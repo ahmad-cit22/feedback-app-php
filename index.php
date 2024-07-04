@@ -1,3 +1,14 @@
+<?php
+
+use App\Classes\Auth;
+use App\Controllers\loginController;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+// fnLogin();
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
