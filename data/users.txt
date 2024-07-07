@@ -12,3 +12,4 @@
 {"name":"Calvin Melendez","email":"gifupanip@mailinator.com","password":"$2y$10$H4rwJpK.I61q2KDhChWBJ.LNwih.58\/050yahuMuvK\/h5h2KUzeVO","feedbackString":"8dbc82"}
 {"name":"Addison Thompson","email":"pufawaj@mailinator.com","password":"$2y$10$\/0ODVqbF1JyxtHQUUo5TzeO0f7\/3TKDlB7JwRb4HWidaa65iS.Pf.","feedbackString":"649f59"}
 {"name":"Patrick Ellison","email":"qucuqi@mailinator.com","password":"$2y$10$FmoyfmGbsLEQYmPB.BYgwe9s0v.20Nnm0jCrV8dJg\/NCOczSXE\/TW","feedbackString":"afd3e7"}
+{"name":"Anastasia Guerrero","email":"bonyhetehe@mailinator.com","password":"$2y$10$uEQ53jIdAvj7G6nxrArTOex9p3HmkHgxWoH.AtvcSDxkh1IT6yYtu","feedbackString":"599762"}

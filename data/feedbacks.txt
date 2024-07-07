@@ -14,3 +14,9 @@
 {"recipientEmail":"xewemy@mailinator.com","feedback":"11dasdasd"}
 {"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd\r\n\r\nasadas"}
 {"recipientEmail":"qucuqi@mailinator.com","feedback":"asadasdasdasdasd"}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"          "}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasdas"}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasdasd"}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"\/\/\/\/"}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasd\/\/asdasd"}
+{"recipientEmail":"qucuqi@mailinator.com","feedback":"\/asdasd\/"}

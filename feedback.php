@@ -39,8 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorBag = new ErrorBag();
 
     $feedback = Input::get('feedback');
+    $feedback = Input::sanitizeInput($feedback);
 
-    if (empty($feedback)) {
+    if (empty($feedback) || $feedback === '') {   
         $errorBag->addError('feedback', 'Feedback cannot be empty!');
     }
 
@@ -48,8 +49,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = $errorBag->getErrors();
     } else {
         try {
-            $feedback = new Feedback($user['email'], $feedback);
-            $feedback->saveData();
+            $newFeedback = new Feedback($user['email'], $feedback);
+            $newFeedback->saveData();
 
             Message::flash('success', 'Thank you for your feedback!');
             header("Location: " . $thisUrl);

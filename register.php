@@ -41,9 +41,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($errorBag->hasErrors()) {
         $errors = $errorBag->getErrors();
     } else {
-        $hashedPassword = Input::hashPassword($password);
-
         try {
+            $name = Input::sanitizeInput($name);
+            $email = Input::sanitizeInput($email);
+            $hashedPassword = Input::hashPassword($password);
+
             $auth = new Auth();
             $auth->register($name, $email, $hashedPassword);
         } catch (Exception $e) {

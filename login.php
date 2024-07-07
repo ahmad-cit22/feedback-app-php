@@ -33,6 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors = $errorBag->getErrors();
     } else {
         try {
+            $email = Input::sanitizeInput($email);
+
             $auth = new Auth();
 
             if ($auth->login($email, $password)) {
@@ -40,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 header('Location: dashboard.php');
                 exit;
             } else {
-                Message::flash('error', 'Email or password is incorrect.');
+                Message::flash('error', 'Invalid credentials. Try again!');
             }
         } catch (Exception $e) {
             Message::flash('loginError', $e->getMessage());

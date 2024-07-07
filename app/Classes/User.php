@@ -12,37 +12,43 @@ class User
     public function __construct(
         private string $name,
         private string $email,
-        private string $password
+        private string $password,
+        private bool $isNew = true
     ) {
         $this->name = $name;
         $this->email = $email;
         $this->password = $password;
+        $this->isNew = $isNew;
 
-        $this->loadData();
+        if ($this->isNew) {
+            $this->loadData();
+        }
 
         $this->setFeedbackString();
     }
 
     private function setFeedbackString(): void
     {
-        do {
-            $uniqueStr = substr(md5(uniqid(true)), 0, 6);
+        if ($this->isNew) {
+            do {
+                $uniqueStr = substr(md5(uniqid(true)), 0, 6);
 
-            $isUnique = true;
+                $isUnique = true;
 
-            if ($this->usersData && count($this->usersData) > 0) {
-                foreach ($this->usersData as $userData) {
-                    $user = json_decode($userData, true);
+                if ($this->usersData && count($this->usersData) > 0) {
+                    foreach ($this->usersData as $userData) {
+                        $user = json_decode($userData, true);
 
-                    if ($user['feedbackString'] === $uniqueStr) {
-                        $isUnique = false;
-                        break;
+                        if ($user['feedbackString'] === $uniqueStr) {
+                            $isUnique = false;
+                            break;
+                        }
                     }
                 }
-            }
-        } while (!$isUnique);
+            } while (!$isUnique);
 
-        $this->feedbackString = $uniqueStr;
+            $this->feedbackString = $uniqueStr;
+        }
 
         return;
     }
@@ -60,6 +66,29 @@ class User
         }
 
         return false;
+    }
+
+    public function getFeedbacks(): array
+    {
+        $filePath = 'data/feedbacks.txt';
+
+        if (!file_exists($filePath) || !is_readable($filePath)) {
+            throw new Exception("Error Loading Data File!");
+        }
+
+        $feedbacksData = file($filePath, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        $userFeedbacks = [];
+
+        foreach ($feedbacksData as $feedback) {
+            $feedback = json_decode($feedback, true);
+
+            if ($feedback['recipientEmail'] === $this->email) {
+                $userFeedbacks[] = $feedback;
+            }
+        }
+
+        return $userFeedbacks;
     }
 
     public function saveData(): void
