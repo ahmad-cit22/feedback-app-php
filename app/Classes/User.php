@@ -6,8 +6,8 @@ use Exception;
 
 class User
 {
-    private string $uniqueShareLink;
-    public array $usersData = [];
+    private string $feedbackString;
+    private array $usersData = [];
 
     public function __construct(
         private string $name,
@@ -20,38 +20,13 @@ class User
 
         $this->loadData();
 
-        $this->setUniqueShareLink();
+        $this->setFeedbackString();
     }
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getEmail(): string
-    {
-        return $this->email;
-    }
-
-    public function getUniqueShareLink(): ?string
-    {
-        foreach ($this->usersData as $userData) {
-            $user = json_decode($userData, true);
-
-            if ($user['email'] === $this->email) {
-                return $user['uniqueLink'];
-            } else {
-                return null;
-            }
-        }
-    }
-
-    private function setUniqueShareLink(): void
+    private function setFeedbackString(): void
     {
         do {
             $uniqueStr = substr(md5(uniqid(true)), 0, 6);
-
-            $newLink = 'http://localhost/feedback-app-php/feedback/' . $uniqueStr;
 
             $isUnique = true;
 
@@ -59,7 +34,7 @@ class User
                 foreach ($this->usersData as $userData) {
                     $user = json_decode($userData, true);
 
-                    if ($user['feedbackLink'] === $newLink) {
+                    if ($user['feedbackString'] === $uniqueStr) {
                         $isUnique = false;
                         break;
                     }
@@ -67,7 +42,7 @@ class User
             }
         } while (!$isUnique);
 
-        $this->uniqueShareLink = $newLink;
+        $this->feedbackString = $uniqueStr;
 
         return;
     }
@@ -97,7 +72,7 @@ class User
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
-            'feedbackLink' => $this->uniqueShareLink
+            'feedbackString' => $this->feedbackString
         ];
 
         $data = json_encode($userData);

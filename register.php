@@ -10,6 +10,11 @@ use App\Classes\ErrorBag;
 use App\Classes\Input;
 use App\Classes\Message;
 
+if (Auth::isLoggedIn()) {
+    header('Location: dashboard.php');
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorBag = new ErrorBag();
 
@@ -127,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <?php endif; ?>
 
                         <div class="mt-10 mx-auto w-full max-w-xl">
-                            <form class="space-y-6" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST" novalidate>
+                            <form class="space-y-6" action="<?= $_SERVER['PHP_SELF'] ?>" method="POST">
                                 <div>
                                     <label for="name" class="block text-sm font-medium leading-6 text-gray-900">Name</label>
                                     <div class="mt-2">
@@ -135,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['name'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="name-error"><?= $errors['name']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="name-error"><?= $errors['name']; ?></p>
                                     <?php endif; ?>
                                 </div>
 
@@ -146,7 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['email'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="email-error"><?= $errors['email']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="email-error"><?= $errors['email']; ?></p>
                                     <?php endif; ?>
                                 </div>
 
@@ -159,7 +164,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['password'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="password-error"><?= $errors['password']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="password-error"><?= $errors['password']; ?></p>
                                     <?php endif; ?>
                                 </div>
 
@@ -172,7 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['confirm_password'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="confirm_password-error"><?= $errors['confirm_password']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="confirm_password-error"><?= $errors['confirm_password']; ?></p>
                                     <?php endif; ?>
                                 </div>
 

@@ -8,11 +8,9 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\Classes\Auth;
 use App\Classes\Message;
 
-if (Auth::isLoggedIn()) {
-    $user = Auth::getUser();
-} else {
-    header('Location: login.php');
-}
+Auth::check();
+
+$user = Auth::getCurrentUser();
 
 ?>
 
@@ -30,7 +28,7 @@ if (Auth::isLoggedIn()) {
     <header class="bg-white">
         <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
             <div class="flex lg:flex-1">
-                <a href="./index.html" class="-m-1.5 p-1.5">
+                <a href="index.php" class="-m-1.5 p-1.5">
                     <span class="sr-only">TruthWhisper</span>
                     <span class="block font-bold text-lg bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
                 </a>
@@ -55,7 +53,7 @@ if (Auth::isLoggedIn()) {
             <div class="fixed inset-0 z-10"></div>
             <div class="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
                 <div class="flex items-center justify-between">
-                    <a href="./index.html" class="-m-1.5 p-1.5">
+                    <a href="index.php" class="-m-1.5 p-1.5">
                         <span class="sr-only">TruthWhisper</span>
                         <span class="block font-bold text-xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</span>
                     </a>
@@ -70,6 +68,8 @@ if (Auth::isLoggedIn()) {
                     <div class="-my-6 divide-y divide-gray-500/10">
                         <div class="py-6">
                             <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"><?= $user['name'] ?></span>
+
+                            <span class="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-red-900 hover:bg-red-50"><a href="logout.php">Logout</a></span>
                         </div>
                     </div>
                 </div>
@@ -83,14 +83,27 @@ if (Auth::isLoggedIn()) {
             <div class="absolute inset-0 bg-[url(./images/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
 
             <div class="relative max-w-7xl mx-auto">
+
                 <?php $message = Message::flash('success');
                 if ($message) : ?>
-                    <div class="mt-3 bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 rounded-lg p-3 text-center" role="alert">
-                        <span class="font-bold"><?= $message; ?></span>
+                    <div class="flex justify-center">
+                        <div class="my-3 bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 rounded-lg p-3 text-center" role="alert">
+                            <span class="font-bold"><?= $message; ?></span>
+                        </div>
                     </div>
                 <?php endif; ?>
+
+                <?php $message = Message::flash('error');
+                if ($message) : ?>
+                    <div class="flex justify-center">
+                        <div class="mt-3 bg-red-100 border border-red-200 text-sm text-red-700 rounded-lg p-3 text-center" role="alert">
+                            <span class="font-bold"><?= $message; ?></span>
+                        </div>
+                    </div>
+                <?php endif; ?>
+
                 <div class="flex justify-end">
-                    <span class="block text-gray-600 font-mono border border-gray-400 rounded-xl px-2 py-1 text-center hover:text-indigo-800 hover:border-indigo-600 cursor-pointer my-3 hover:underline mr-10">Your feedback form link: <strong><a href="<?= $user['feedbackLink'] ?>"><?= $user['feedbackLink'] ?></a></strong></span>
+                    <a href="http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?>"><span class="block text-gray-600 font-mono border border-gray-400 rounded-xl px-2 py-1 text-center hover:text-indigo-800 hover:border-indigo-600 cursor-pointer my-3 hover:underline mr-10 text-sm">Feedback form link: <strong>http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?></strong></span></a>
                 </div>
                 <div class="px-10 py-3">
                     <h1 class="text-xl text-indigo-800 text-bold my-10">Received feedbacks</h1>

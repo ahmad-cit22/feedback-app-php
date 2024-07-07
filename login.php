@@ -10,6 +10,11 @@ use App\Classes\ErrorBag;
 use App\Classes\Input;
 use App\Classes\Message;
 
+if (Auth::isLoggedIn()) {
+    header('Location: dashboard.php');
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorBag = new ErrorBag();
 
@@ -138,7 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['email'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="email-error"><?= $errors['email']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="email-error"><?= $errors['email']; ?></p>
                                     <?php endif; ?>
                                 </div>
 
@@ -154,7 +159,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     </div>
 
                                     <?php if (isset($errors['password'])) : ?>
-                                        <p class="text-xs text-red-700 mt-2" id="password-error"><?= $errors['password']; ?></p>
+                                        <p class="text-sm text-red-700 mt-2" id="password-error"><?= $errors['password']; ?></p>
                                     <?php endif; ?>
                                 </div>
 

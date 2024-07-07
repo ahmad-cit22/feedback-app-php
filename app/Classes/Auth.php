@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Classes;
 
 use Exception;
@@ -23,7 +25,7 @@ class Auth
 
     public function login(string $email, string $password): bool
     {
-        $usersData = $this->getUsersDataJson();
+        $usersData = self::getUsersDataJson();
         foreach ($usersData as $user) {
             $user = json_decode($user, true);
 
@@ -53,13 +55,35 @@ class Auth
     {
         return isset($_SESSION['user']);
     }
+
+    public static function check(): void
+    {
+        if (!self::isLoggedIn()) {
+            header('Location: login.php');
+            exit;
+        } 
+    }
     
-    public static function getUser(): array
+    public static function getCurrentUser(): array
     {
         return $_SESSION['user'];
     }
 
-    private function getUsersDataJson(): array
+    public static function findUser(string $feedbackString): array
+    {
+        $usersData = self::getUsersDataJson();
+
+        foreach ($usersData as $user) {
+            $user = json_decode($user, true);
+            if ($user['feedbackString'] === $feedbackString) {
+                return $user;
+            }
+        }
+
+        return [];
+    }
+
+    private static function getUsersDataJson(): array
     {
         $filePath = 'data/users.txt';
 
