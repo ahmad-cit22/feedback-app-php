@@ -51,7 +51,7 @@ class User
         do {
             $uniqueStr = substr(md5(uniqid(true)), 0, 6);
 
-            $newLink = 'http://localhost/feedback/' . $uniqueStr;
+            $newLink = 'http://localhost/feedback-app-php/feedback/' . $uniqueStr;
 
             $isUnique = true;
 

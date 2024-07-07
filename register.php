@@ -3,12 +3,12 @@
 declare(strict_types=1);
 session_start();
 
+require_once __DIR__ . '/vendor/autoload.php';
+
+use App\Classes\Auth;
 use App\Classes\ErrorBag;
 use App\Classes\Input;
 use App\Classes\Message;
-use App\Classes\User;
-
-require_once __DIR__ . '/vendor/autoload.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errorBag = new ErrorBag();
@@ -35,20 +35,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($errorBag->hasErrors()) {
         $errors = $errorBag->getErrors();
-
-        // var_dump($errors);
     } else {
         $hashedPassword = Input::hashPassword($password);
 
         try {
-            $user = new User($name, $email, $hashedPassword);
-            $user->saveData();
-
-            Message::flash('success', 'Your account has been created successfully! You can now log in.');
-            header('Location: login.php');
-            exit;
+            $auth = new Auth();
+            $auth->register($name, $email, $hashedPassword);
         } catch (Exception $e) {
-            Message::flash('regError', $e->getMessage());
+            Message::flash('error', $e->getMessage());
         }
     }
 }
@@ -125,9 +119,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <h1 class="block text-center font-bold text-2xl bg-gradient-to-r from-blue-600 via-green-500 to-indigo-400 inline-block text-transparent bg-clip-text">TruthWhisper</h1>
                         </div>
 
-                        <?php $message = Message::flash('regError');
+                        <?php $message = Message::flash('error');
                         if ($message) : ?>
-                            <div class="mt-2 bg-red-100 border border-red-200 text-sm text-red-800 rounded-lg p-3 text-center" role="alert">
+                            <div class="mt-3 bg-red-100 border border-red-200 text-sm text-red-700 rounded-lg p-3 text-center" role="alert">
                                 <span class="font-bold"><?= $message; ?></span>
                             </div>
                         <?php endif; ?>

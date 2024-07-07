@@ -3,10 +3,45 @@
 declare(strict_types=1);
 session_start();
 
-use App\Classes\Message;
-
 require_once __DIR__ . '/vendor/autoload.php';
 
+use App\Classes\Auth;
+use App\Classes\ErrorBag;
+use App\Classes\Input;
+use App\Classes\Message;
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $errorBag = new ErrorBag();
+
+    $email = Input::get('email');
+    $password = Input::get('password');
+
+    if (!Input::isEmailValid($email)) {
+        $errorBag->addError('email', 'Please enter a valid email address.');
+    }
+
+    if (!Input::isPasswordValid($password)) {
+        $errorBag->addError('password', 'Please enter a valid password.');
+    }
+
+    if ($errorBag->hasErrors()) {
+        $errors = $errorBag->getErrors();
+    } else {
+        try {
+            $auth = new Auth();
+
+            if ($auth->login($email, $password)) {
+                Message::flash('success', 'Welcome back! You are now logged in!');
+                header('Location: dashboard.php');
+                exit;
+            } else {
+                Message::flash('error', 'Email or password is incorrect.');
+            }
+        } catch (Exception $e) {
+            Message::flash('loginError', $e->getMessage());
+        }
+    }
+}
 
 ?>
 
@@ -82,7 +117,14 @@ require_once __DIR__ . '/vendor/autoload.php';
 
                         <?php $message = Message::flash('success');
                         if ($message) : ?>
-                            <div class="mt-2 bg-indigo-100 border border-indigo-200 text-sm text-indigo-800 rounded-lg p-3 text-center" role="alert">
+                            <div class="mt-3 bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 rounded-lg p-3 text-center" role="alert">
+                                <span class="font-bold"><?= $message; ?></span>
+                            </div>
+                        <?php endif; ?>
+
+                        <?php $message = Message::flash('error');
+                        if ($message) : ?>
+                            <div class="mt-3 bg-red-100 border border-red-200 text-sm text-red-700 rounded-lg p-3 text-center" role="alert">
                                 <span class="font-bold"><?= $message; ?></span>
                             </div>
                         <?php endif; ?>
@@ -94,6 +136,10 @@ require_once __DIR__ . '/vendor/autoload.php';
                                     <div class="mt-2">
                                         <input id="email" name="email" type="email" autocomplete="email" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
+
+                                    <?php if (isset($errors['email'])) : ?>
+                                        <p class="text-xs text-red-700 mt-2" id="email-error"><?= $errors['email']; ?></p>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div>
@@ -106,6 +152,10 @@ require_once __DIR__ . '/vendor/autoload.php';
                                     <div class="mt-2">
                                         <input id="password" name="password" type="password" autocomplete="current-password" required class="block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                                     </div>
+
+                                    <?php if (isset($errors['password'])) : ?>
+                                        <p class="text-xs text-red-700 mt-2" id="password-error"><?= $errors['password']; ?></p>
+                                    <?php endif; ?>
                                 </div>
 
                                 <div>

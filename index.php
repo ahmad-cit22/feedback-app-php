@@ -1,14 +1,6 @@
 <?php
 
 declare(strict_types=1);
-session_start();
-
-use App\Classes\Auth;
-use App\Controllers\loginController;
-
-require_once __DIR__ . '/vendor/autoload.php';
-
-// fnLogin();
 
 ?>
 
