@@ -5,8 +5,22 @@ namespace App\Classes;
 
 class Auth
 {
-    public function login()
+    private string $usersFileName = 'users.txt';
+
+    public function __construct(private User $user)
     {
-        echo 'login';
+        $this->user = $user;
     }
+
+    public function register(): void
+    {
+        // $this->user->register();
+        $userData = [
+            'name' => $this->user->name,
+            'email' => $this->user->email,
+            'password' => $this->user->password
+        ];
+    }
+
+    
 }
