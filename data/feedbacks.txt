@@ -1,22 +1,15 @@
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasdasd asdasda"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasdasd asdasda"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasds"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd\r\n\r\n"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd\r\n"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"sfsd sdfsdfsdfsdf"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdsd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdassss"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"11dasdasd"}
-{"recipientEmail":"xewemy@mailinator.com","feedback":"asdasdasd\r\n\r\nasadas"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"asadasdasdasdasd"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"          "}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasdas"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasdasd"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"\/\/\/\/"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"asdasd\/\/asdasd"}
-{"recipientEmail":"qucuqi@mailinator.com","feedback":"\/asdasd\/"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"dasdasdas asdasdasd asdasdsad","createdAt":"2024-07-08 03:13:51"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"saasdasd","createdAt":"2024-07-08 03:26:30"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"jklkjkljklj","createdAt":"2024-07-08 03:26:33"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"sfsdfsdfsd","createdAt":"2024-07-08 03:26:37"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"sdfsdfsdfsdf","createdAt":"2024-07-08 03:26:40"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"sdfsvxvxvxvxv","createdAt":"2024-07-08 03:26:43"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"asdasdasdasd","createdAt":"2024-07-08 03:31:45"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"asdasdasdasd","createdAt":"2024-07-08 03:39:14"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"xzzxzxxzx","createdAt":"2024-07-08 03:43:30"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"sdfsdfsdfsdf","createdAt":"2024-07-08 09:44:16"}
+{"recipientEmail":"syxew@mailinator.com","feedback":"ssswwwwwww","createdAt":"2024-07-08 09:48:01"}
+{"recipientEmail":"lukah@mailinator.com","feedback":"sdfsdf sdfsdf sdfsdfsdfsdfsdf","createdAt":"2024-07-08 09:50:57"}
+{"recipientEmail":"lukah@mailinator.com","feedback":"????????????????","createdAt":"2024-07-08 09:51:08"}
+{"recipientEmail":"lukah@mailinator.com","feedback":"\/\/\/\/\/\/\/\/\/\/\/\/","createdAt":"2024-07-08 09:51:12"}
+{"recipientEmail":"lukah@mailinator.com","feedback":"\\\\\\\\\\\\","createdAt":"2024-07-08 09:51:20"}

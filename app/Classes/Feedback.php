@@ -16,7 +16,8 @@ class Feedback
     {
         $feedbackData = [
             'recipientEmail' => $this->recipientEmail,
-            'feedback' => $this->feedback
+            'feedback' => $this->feedback,
+            'createdAt' => Utility::dateFormat()
         ];
 
         $data = json_encode($feedbackData);

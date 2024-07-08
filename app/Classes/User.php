@@ -101,7 +101,8 @@ class User
             'name' => $this->name,
             'email' => $this->email,
             'password' => $this->password,
-            'feedbackString' => $this->feedbackString
+            'feedbackString' => $this->feedbackString,
+            'createdAt' => date('Y-m-d H:i:s')
         ];
 
         $data = json_encode($userData);

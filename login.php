@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $auth = new Auth();
 
             if ($auth->login($email, $password)) {
-                Message::flash('success', 'Welcome back! You are now logged in!');
+                Message::flash('success', 'You are now logged in!');
                 header('Location: dashboard.php');
                 exit;
             } else {

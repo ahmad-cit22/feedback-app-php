@@ -31,7 +31,7 @@ $feedbacks = $userObj->getFeedbacks();
 
 <body class="bg-gray-100">
     <header class="bg-white">
-        <nav class="flex items-center justify-between p-6 lg:px-8" aria-label="Global">
+        <nav class="flex items-center justify-between p-6 lg:px-16" aria-label="Global">
             <div class="flex lg:flex-1">
                 <a href="index.php" class="-m-1.5 p-1.5">
                     <span class="sr-only">TruthWhisper</span>
@@ -87,7 +87,7 @@ $feedbacks = $userObj->getFeedbacks();
             <img src="./images/beams.jpg" alt="" class="absolute top-1/2 left-1/2 max-w-none -translate-x-1/2 -translate-y-1/2" width="1308" />
             <div class="absolute inset-0 bg-[url(./images/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
 
-            <div class="relative max-w-7xl mx-auto">
+            <div class="relative mx-auto" style="width: 95%;">
 
                 <?php $message = Message::flash('success');
                 if ($message) : ?>
@@ -108,19 +108,25 @@ $feedbacks = $userObj->getFeedbacks();
                 <?php endif; ?>
 
                 <div class="flex justify-end">
-                    <a href="http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?>"><span class="block text-gray-600 font-mono border border-gray-400 rounded-xl px-2 py-1 text-center hover:text-indigo-800 hover:border-indigo-600 cursor-pointer my-3 hover:underline mr-10 text-sm">Feedback form link: <strong>http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?></strong></span></a>
+                    <a href="http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?>" title="Your Feedback form link that can be shared to others."><span class="block text-gray-600 font-mono border border-gray-400 rounded-xl px-2 py-1 text-center hover:text-indigo-800 hover:border-indigo-600 cursor-pointer my-3 hover:underline mr-10 text-sm">Your Feedback form link: <strong>http://127.0.0.1/feedback-app-php/feedback-<?= $user['feedbackString'] ?></strong></span></a>
                 </div>
                 <div class="px-10 py-3">
                     <h1 class="text-xl text-indigo-800 text-bold my-10">Received feedbacks</h1>
 
-                    <?php if (count($feedbacks) < 1) : ?>
-                        No data
+                    <?php if (count($feedbacks) < 1 || !$feedbacks) : ?>
+                        <div class="flex justify-center">
+                            <div class="mt-3 bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 rounded-lg p-3 text-center" role="alert">
+                                <span class="font-bold">No feedbacks yet.</span>
+                            </div>
+                        </div>
                     <?php else : ?>
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-                            <?php foreach ($feedbacks as $feedback) : ?>
-                                <div class="relative flex items-center space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
+                            <?php foreach ($feedbacks as $key => $feedback) : ?>
+                                <div class="relative space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
                                     <div class="focus:outline-none">
-                                        <p class="text-gray-500"><?= $feedback['feedback'] ?></p>
+                                        <p class="text-xs font-medium text-gray-400 mt-1 mb-2"><?= $key + 1 ?></p>
+                                        <p class="text-gray-800"><?= $feedback['feedback'] ?></p>
+                                        <p class="text-gray-500 text-sm mt-3 text-right font-mono"><?= date('F j, Y h:i A', strtotime($feedback['createdAt'])) ?></p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>

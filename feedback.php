@@ -10,11 +10,7 @@ use App\Classes\ErrorBag;
 use App\Classes\Feedback;
 use App\Classes\Input;
 use App\Classes\Message;
-
-$thisUrl = $_SERVER['PHP_SELF'];
-if (!empty($_SERVER['QUERY_STRING'])) {
-    $thisUrl .= '?' . $_SERVER['QUERY_STRING'];
-}
+use App\Classes\Utility;
 
 $queryStr = explode('=', $_SERVER['QUERY_STRING'])[1];
 $user = Auth::findUser($queryStr);
@@ -52,8 +48,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newFeedback = new Feedback($user['email'], $feedback);
             $newFeedback->saveData();
 
-            Message::flash('success', 'Thank you for your feedback!');
-            header("Location: " . $thisUrl);
+            // Message::flash('success', 'Thank you for your feedback!');
+            header("Location: feedback-success.php");
             exit;
         } catch (Exception $e) {
             Message::flash('error', $e->getMessage());
@@ -136,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
                         <div class="mt-10 mx-auto w-full max-w-xl">
-                            <form class="space-y-6" action="<?= $thisUrl ?>" method="POST" novalidate>
+                            <form class="space-y-6" action="<?= Utility::getSelfUrl() ?>" method="POST" novalidate>
                                 <div>
                                     <label for="feedback" class="block text-sm font-medium leading-6 text-indigo-700">Don't hesitate, just do it!</label>
                                     <div class="mt-2">
