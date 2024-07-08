@@ -91,8 +91,8 @@ $feedbacks = $userObj->getFeedbacks();
                 <?php $message = Message::flash('success');
                 if ($message) : ?>
                     <div class="flex justify-center">
-                        <div class="my-3 bg-indigo-100 border border-indigo-200 text-sm text-indigo-700 rounded-lg p-3 text-center" role="alert">
-                            <span class="font-bold"><?= $message; ?></span>
+                        <div class="my-3 bg-green-100 border border-green-200 text-sm text-green-700 rounded-lg p-3 text-center" role="alert">
+                            <i class="fa-solid fa-circle-check"></i> <span class="font-bold"><?= $message; ?></span>
                         </div>
                     </div>
                 <?php endif; ?>
@@ -121,10 +121,10 @@ $feedbacks = $userObj->getFeedbacks();
                     <?php else : ?>
                         <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
                             <?php foreach ($feedbacks as $key => $feedback) : ?>
-                                <div class="relative space-x-3 rounded-lg border border-gray-300 bg-white px-6 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
+                                <div class="relative space-x-3 rounded-lg border border-gray-300 bg-white px-7 py-5 shadow-sm focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 hover:border-gray-400">
                                     <div class="focus:outline-none">
                                         <p class="text-xs font-medium text-gray-400 mt-1 mb-2"><?= $key + 1 ?></p>
-                                        <p class="text-gray-800"><?= $feedback['feedback'] ?></p>
+                                        <p class="text-gray-800 break-words test-justify"><?= $feedback['feedback'] ?></p>
                                         <p class="text-gray-500 text-sm mt-3 text-right font-mono"><?= date('F j, Y h:i A', strtotime($feedback['createdAt'])) ?></p>
                                     </div>
                                 </div>
