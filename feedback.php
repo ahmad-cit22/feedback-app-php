@@ -48,7 +48,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $newFeedback = new Feedback($user['email'], $feedback);
             $newFeedback->saveData();
 
-            // Message::flash('success', 'Thank you for your feedback!');
             header("Location: feedback-success.php");
             exit;
         } catch (Exception $e) {

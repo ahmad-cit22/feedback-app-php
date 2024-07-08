@@ -6,7 +6,6 @@ session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 
 use App\Classes\Auth;
-use App\Classes\Feedback;
 use App\Classes\Message;
 use App\Classes\User;
 
