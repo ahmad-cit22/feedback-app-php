@@ -6,6 +6,19 @@ use App\Models\Feedback;
 
 class Utility
 {
+    /**
+     * Constructor for Utility class.
+     */
+    public function __construct()
+    {
+        //
+    }
+    
+    /**
+     * Retrieves the current URL of the PHP script, including query parameters if present.
+     *
+     * @return string
+     */
     public static function getSelfUrl(): string
     {
         $thisUrl = $_SERVER['PHP_SELF'];
