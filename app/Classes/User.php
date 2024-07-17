@@ -134,7 +134,7 @@ class User
             'email' => $this->email,
             'password' => $this->password,
             'feedbackString' => $this->feedbackString,
-            'createdAt' => date('Y-m-d H:i:s')
+            'createdAt' => Utility::dateFormat()
         ];
 
         $data = json_encode($userData);
