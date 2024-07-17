@@ -8,6 +8,7 @@ require_once __DIR__ . '/vendor/autoload.php';
 use App\Classes\Auth;
 use App\Classes\Message;
 use App\Classes\User;
+use App\Classes\Utility;
 
 Auth::check();
 
@@ -125,7 +126,7 @@ $feedbacks = $userObj->getFeedbacks();
                                     <div class="focus:outline-none">
                                         <p class="text-xs font-medium text-gray-400 mt-1 mb-2"><?= $key + 1 ?></p>
                                         <p class="text-gray-800 break-words test-justify"><?= $feedback['feedback'] ?></p>
-                                        <p class="text-gray-500 text-sm mt-3 text-right font-mono"><?= date('F j, Y h:i A', strtotime($feedback['createdAt'])) ?></p>
+                                        <p class="text-gray-500 text-sm mt-3 text-right font-mono"><?= Utility::dateFormat($feedback['createdAt']) ?></p>
                                     </div>
                                 </div>
                             <?php endforeach; ?>
